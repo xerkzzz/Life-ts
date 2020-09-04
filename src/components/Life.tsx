@@ -11,22 +11,14 @@ interface Props
 }
 export const Life = (props: Props) => {
     const [numbers, setNumber] = useState(props.transform.getNumbers());
-    // const [flag, setFlag] = useState(true)
-    // console.log("123")
 
     function newNumbers() {
-         // console.log('qwer')
         setNumber(JSON.parse(JSON.stringify(props.transform.getNumbers())))
-        // setFlag(!flag)
     }
 
-    // let intervalId;
     useEffect(() => {
-        console.log("zx")
-       let intervalId = setInterval(newNumbers, props.interval || 100); // устанавливаем интервал вызова метода tick
-        return () => {clearInterval(intervalId)
-            console.log("45")
-        }; // передаем функцию clearInterval
+       let intervalId = setInterval(newNumbers, props.interval || 1000); // устанавливаем интервал вызова метода tick
+        return () => {clearInterval(intervalId)}; // передаем функцию clearInterval
     }, []) // parameter [] не дает вызывать данный метод при изменение состояния
     return <Matrix numbers={numbers}/>
 }
